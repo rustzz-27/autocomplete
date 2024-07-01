@@ -1,16 +1,43 @@
-<div class="search-container">
-  <div class="logo-container">
-    <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google Logo">
+<div class="parent-div">
+
+
+  <!-- Title -->
+  <div class="title">
+    <h1>Music Search</h1>
   </div>
-  <div class="autocomplete">
-    <mat-form-field appearance="fill" class="search-bar">
-      <mat-label>Search for music, albums, or artists</mat-label>
-      <input matInput [(ngModel)]="query" (ngModelChange)="onSearchChange($event)" />
-    </mat-form-field>
-    <mat-list *ngIf="suggestions.length">
-      <mat-list-item *ngFor="let suggestion of suggestions">
-        {{ suggestion.name }}
-      </mat-list-item>
-    </mat-list>
+
+  <!-- Search Bar -->
+  <div class="search-container">
+    <div class="filter-options">
+      <label>
+        <input type="radio" name="filter" value="artist" [(ngModel)]="searchType" (change)="onSearchTypeChange()">
+        Artist
+      </label>
+      <label>
+        <input type="radio" name="filter" value="album" [(ngModel)]="searchType" (change)="onSearchTypeChange()"> Album
+      </label>
+      <label>
+        <input type="radio" name="filter" value="song" [(ngModel)]="searchType" (change)="onSearchTypeChange()"> Song
+      </label>
+    </div>
+    <div class="autocomplete">
+      <mat-form-field appearance="fill" class="search-bar">
+        <mat-label>Search for music, albums, or artists</mat-label>
+        <input matInput [(ngModel)]="query" (ngModelChange)="onSearchChange($event)" />
+      </mat-form-field>
+      <mat-list *ngIf="suggestions.length">
+        <mat-list-item *ngFor="let suggestion of suggestions">
+          <div *ngIf="suggestion.type === 'artist'">
+            <strong>Artist:</strong> {{ suggestion.name }}
+          </div>
+          <div *ngIf="suggestion.type === 'album'">
+            <strong>Album:</strong> {{ suggestion.title }} by {{ suggestion.artist }}
+          </div>
+          <div *ngIf="suggestion.type === 'song'">
+            <strong>Song:</strong> {{ suggestion.title }} from {{ suggestion.album }} by {{ suggestion.artist }}
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </div>
   </div>
 </div>

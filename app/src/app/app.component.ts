@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -6,35 +6,34 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   query: string = '';
   suggestions: any[] = [];
-  data: any[] = [];
+  searchType: string = 'artist';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  ngOnInit() {
-    // this.fetchData ();
-  }
 
-  fetchData() {
-    this.http.get<any[]>('http://localhost:5000/data')
-      .subscribe(
-        response => this.data = response,
-        error => console.error('Error fetching data', error)
-      );
-  }
 
   onSearchChange(value: string) {
     this.query = value;
-    if (value.length > 2) {
-      this.suggestions = this.data.filter(item => 
-        item.name.toLowerCase().includes(value.toLowerCase()) ||
-        item.albums.some((album:any) => album.title.toLowerCase().includes(value.toLowerCase())) ||
-        item.albums.some((album:any) => album.songs.some((song:any) => song.title.toLowerCase().includes(value.toLowerCase())))
-      );
+    if (value.length > 1) {
+      this.http.get<any[]>(`http://localhost:5000/api/search?q=${value}&type=${this.searchType}`)
+        .subscribe(
+          (response) => {
+            this.suggestions = response;
+          },
+          (error) => {
+            console.error('Error fetching data', error);
+          }
+        );
     } else {
       this.suggestions = [];
     }
+  }
+
+  onSearchTypeChange() {
+    this.query = '';
+    this.suggestions = [];
   }
 }
