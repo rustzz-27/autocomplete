@@ -1,12 +1,11 @@
-// const data = require('../models/data');
-const data = require('../model/data')
+const data = require('../model/data');
 
-function search(query) {
+function search(query, type) {
   query = query.toLowerCase();
   const results = [];
 
   data.forEach(artist => {
-    if (artist.name.toLowerCase().includes(query)) {
+    if (type === 'artist' && artist.name.toLowerCase().includes(query)) {
       results.push({
         type: 'artist',
         name: artist.name,
@@ -15,7 +14,7 @@ function search(query) {
     }
 
     artist.albums.forEach(album => {
-      if (album.title.toLowerCase().includes(query)) {
+      if (type === 'album' && album.title.toLowerCase().includes(query)) {
         results.push({
           type: 'album',
           artist: artist.name,
@@ -25,7 +24,7 @@ function search(query) {
       }
 
       album.songs.forEach(song => {
-        if (song.title.toLowerCase().includes(query)) {
+        if (type === 'song' && song.title.toLowerCase().includes(query)) {
           results.push({
             type: 'song',
             artist: artist.name,
@@ -46,10 +45,11 @@ exports.getData = (req, res) => {
 
 exports.searchData = (req, res) => {
   const query = req.query.q;
-  if (!query) {
-    return res.status(400).json({ error: 'Query parameter is required' });
+  const type = req.query.type;
+  if (!query || !type) {
+    return res.status(400).json({ error: 'Query and type parameters are required' });
   }
 
-  const results = search(query);
+  const results = search(query, type);
   res.json(results);
 };
