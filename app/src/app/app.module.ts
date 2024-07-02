@@ -6,7 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatOptionModule } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -20,6 +21,8 @@ import { AppComponent } from './app.component';
     MatFormFieldModule,
     MatInputModule,
     MatListModule,
+    MatOptionModule,
+    MatAutocompleteModule,
     HttpClientModule
   ],
   providers: [],
