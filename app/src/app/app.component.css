@@ -1,16 +1,33 @@
 .parent-div {
   text-align: center;
-  width: 100%;  
+  width: 100%;
 }
+
+
+.label-description {
+  color: #e8eaed;
+}
+/* body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #202124;
+  color: #e8eaed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.parent-div {
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  box-sizing: border-box;
+} */
 
 .title {
   margin: 20px 0;
-}
-
-.search-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .filter-options {
@@ -23,24 +40,105 @@
   margin: 0 10px;
 }
 
-.autocomplete {
-  width: 100%;
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .search-bar {
   width: 100%;
 }
 
-mat-list {
-  width: 100%;
-  max-height: 200px;
-  overflow: auto;
-  background: #ccc;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  z-index: 1000;
+.mat-autocomplete-panel {
+  background-color: #202124;
+  color: #e8eaed;
 }
 
-mat-list-item {
+.mat-option {
+  background-color: #202124;
   color: #e8eaed;
+}
+
+.mat-option:hover {
+  background-color: #333;
+}
+
+.search-term {
+  margin-top: 20px;
+}
+
+.search-term h2 {
+  color: #8ab4f8;
+}
+
+.selected-item {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.selected-item h3, .selected-item h4 {
+  color: #8ab4f8;
+}
+
+.selected-item ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.selected-item ul li {
+  margin: 5px 0;
+}
+
+.results-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.result-card {
+  flex: 1 1 calc(33% - 20px); /* Three columns with some gap */
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  max-width: 400px; /* Ensure a fixed maximum width for the card */
+}
+
+.result-card h4 {
+  margin-top: 0;
+  color: #8ab4f8;
+}
+
+.result-card ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.result-card ul li {
+  margin: 5px 0;
+}
+
+mat-expansion-panel {
+  background-color: #444;
+  color: #e8eaed;
+  margin-bottom: 10px;
+}
+
+mat-expansion-panel-header {
+  color: #e8eaed; /* Make the "Description" text white */
+}
+
+mat-panel-title {
+  font-weight: bold;
+}
+
+.album-description {
+  color: #e8eaed; /* Ensure description text is white */
+  padding: 10px;
+  background-color: #555; /* Different background for description */
+  border-radius: 5px;
+  margin-top: 10px;
 }

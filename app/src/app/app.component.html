@@ -19,14 +19,70 @@
     </div>
     <mat-form-field appearance="fill" class="search-bar">
       <mat-label>Search for music, albums, or artists</mat-label>
-      <input type="text" matInput [(ngModel)]="query" (input)="onSearchChange($event)" [matAutocomplete]="auto">
+      <input type="text" matInput [(ngModel)]="query" (input)="onSearchChange($event)" (keyup.enter)="onSearchButtonClick()" [matAutocomplete]="auto">
     </mat-form-field>
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onOptionSelected($event)">
       <mat-option *ngFor="let suggestion of suggestions" [value]="suggestion">
         <span *ngIf="suggestion.type === 'artist'"><strong>Artist:</strong> {{ suggestion.name }}</span>
         <span *ngIf="suggestion.type === 'album'"><strong>Album:</strong> {{ suggestion.title }} by {{ suggestion.artist }}</span>
         <span *ngIf="suggestion.type === 'song'"><strong>Song:</strong> {{ suggestion.title }} from {{ suggestion.album }} by {{ suggestion.artist }}</span>
       </mat-option>
     </mat-autocomplete>
+  </div>
+
+  <!-- Display Search Term -->
+  <div *ngIf="query" class="search-term">
+    <h2>Results for: {{ query }}</h2>
+  </div>
+  <div *ngIf="noResults">No results found</div>
+  <!-- Selected Result Display -->
+  <div *ngIf="selectedItems.length" class="selected-item">
+    <div class="results-container">
+      <div *ngFor="let item of selectedItems" class="result-card">
+        <div *ngIf="item.type === 'artist'" class="selected-artist">
+          <h3>{{ item.name }}</h3>
+          <div class="albums-container">
+            <div *ngFor="let album of item.albums" class="result-card">
+              <h4>{{ album.title }}</h4>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Description
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="album-description">
+                  <p>{{ album.description }}</p>
+                </div>
+              </mat-expansion-panel>
+              <ul>
+                <li *ngFor="let song of album.songs">{{ song.title }} ({{ song.length }})</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="item.type === 'album'" class="selected-album">
+          <h3>{{ item.title }} by {{ item.artist }}</h3>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Description
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="album-description">
+              <p>{{ item.description }}</p>
+            </div>
+          </mat-expansion-panel>
+          <ul>
+            <li *ngFor="let song of item.songs">{{ song.title }} ({{ song.length }})</li>
+          </ul>
+        </div>
+        <div *ngIf="item.type === 'song'" class="selected-song">
+          <h3>{{ item.title }}</h3>
+          <p>Album: {{ item.album }}</p>
+          <p>Artist: {{ item.artist }}</p>
+          <p>Length: {{ item.length }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

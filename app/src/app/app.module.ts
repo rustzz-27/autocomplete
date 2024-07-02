@@ -8,6 +8,8 @@ import { MatListModule } from '@angular/material/list';
 import { HttpClientModule } from '@angular/common/http';
 import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -23,6 +25,7 @@ import { AppComponent } from './app.component';
     MatListModule,
     MatOptionModule,
     MatAutocompleteModule,
+    MatExpansionModule,
     HttpClientModule
   ],
   providers: [],
