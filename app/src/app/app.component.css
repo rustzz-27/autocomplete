@@ -7,24 +7,38 @@
 .label-description {
   color: #e8eaed;
 }
-/* body {
+
+.suggestions-list {
+  list-style-type: none;
+  padding: 0;
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #202124;
-  color: #e8eaed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%; 
+  z-index: 1000;
 }
 
-.parent-div {
-  text-align: center;
-  width: 100%;
-  max-width: 1200px;
-  padding: 20px;
-  box-sizing: border-box;
-} */
+.suggestions-list li {
+  padding: 0.5em;
+  cursor: pointer;
+  color: black; 
+}
+
+.suggestions-list li:hover {
+  background-color: #f0f0f0;
+}
+
+.search-container {
+  position: relative; 
+}
+
+.example-container mat-form-field {
+  width: 220px;
+}
+
 
 .title {
   margin: 20px 0;
@@ -98,12 +112,12 @@
 }
 
 .result-card {
-  flex: 1 1 calc(33% - 20px); /* Three columns with some gap */
+  flex: 1 1 calc(33% - 20px); 
   background-color: #333;
   padding: 10px;
   border-radius: 5px;
   box-sizing: border-box;
-  max-width: 400px; /* Ensure a fixed maximum width for the card */
+  max-width: 400px; 
 }
 
 .result-card h4 {
@@ -128,7 +142,7 @@ mat-expansion-panel {
 }
 
 mat-expansion-panel-header {
-  color: #e8eaed; /* Make the "Description" text white */
+  color: #e8eaed; 
 }
 
 mat-panel-title {
@@ -136,9 +150,9 @@ mat-panel-title {
 }
 
 .album-description {
-  color: #e8eaed; /* Ensure description text is white */
+  color: #e8eaed; 
   padding: 10px;
-  background-color: #555; /* Different background for description */
+  background-color: #555;
   border-radius: 5px;
   margin-top: 10px;
 }

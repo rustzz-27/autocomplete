@@ -17,17 +17,19 @@
         <input type="radio" name="filter" value="song" [(ngModel)]="searchType" (change)="onSearchTypeChange()"> Song
       </label>
     </div>
-    <mat-form-field appearance="fill" class="search-bar">
-      <mat-label>Search for music, albums, or artists</mat-label>
-      <input type="text" matInput [(ngModel)]="query" (input)="onSearchChange($event)" (keyup.enter)="onSearchButtonClick()" [matAutocomplete]="auto">
-    </mat-form-field>
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onOptionSelected($event)">
-      <mat-option *ngFor="let suggestion of suggestions" [value]="suggestion">
-        <span *ngIf="suggestion.type === 'artist'"><strong>Artist:</strong> {{ suggestion.name }}</span>
-        <span *ngIf="suggestion.type === 'album'"><strong>Album:</strong> {{ suggestion.title }} by {{ suggestion.artist }}</span>
-        <span *ngIf="suggestion.type === 'song'"><strong>Song:</strong> {{ suggestion.title }} from {{ suggestion.album }} by {{ suggestion.artist }}</span>
-      </mat-option>
-    </mat-autocomplete>
+    <div class="search-bar">
+      <mat-form-field appearance="fill" class="search-bar">
+        <mat-label>Search for music, albums, or artists</mat-label>
+        <input type="text" matInput [(ngModel)]="query" (input)="onSearchChange($event)" (keyup.enter)="onSearchButtonClick()">
+      </mat-form-field>
+      <ul *ngIf="showSuggestions" class="suggestions-list">
+        <li *ngFor="let suggestion of suggestions" (click)="onOptionSelected(suggestion)">
+          <span *ngIf="suggestion.type === 'artist'"><strong>Artist:</strong> {{ suggestion.name }}</span>
+          <span *ngIf="suggestion.type === 'album'"><strong>Album:</strong> {{ suggestion.title }} by {{ suggestion.artist }}</span>
+          <span *ngIf="suggestion.type === 'song'"><strong>Song:</strong> {{ suggestion.title }} from {{ suggestion.album }} by {{ suggestion.artist }}</span>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <!-- Display Search Term -->
