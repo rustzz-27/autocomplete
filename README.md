@@ -11,10 +11,9 @@ This project is a music search application built with Angular and Node.js. It al
 - [Running the Project](#running-the-project)
 
 ## Features
-
+- Get suggestions as you type
 - Search for artists, albums, and songs.
 - Display detailed information about selected search results.
-- Dynamically update URL based on search query and type.
 - User-friendly and responsive UI.
 
 ## Technologies
