@@ -85,7 +85,7 @@ exports.getData = (req, res) => {
 exports.searchData = (req, res) => {
   const query = req.query.q;
   const type = req.query.type;
-  const detailed = req.query.detailed === 'true'; // Add a query parameter to check if detailed info is requested
+  const detailed = req.query.detailed === 'true';
 
   if (!query || !type) {
     return res.status(400).json({ error: 'Query and type parameters are required' });
