@@ -1,4 +1,4 @@
-# Music Search Application
+# Music Suggestion Application
 
 This project is a music search application built with Angular and Node.js. It allows users to search for artists, albums, and songs, displaying relevant information in an organized manner.
 
