@@ -9,10 +9,6 @@ This project is a music search application built with Angular and Node.js. It al
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Running the Project](#running-the-project)
-- [Project Structure](#project-structure)
-- [Extending the Project](#extending-the-project)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
