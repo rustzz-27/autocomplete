@@ -51,14 +51,14 @@ cd autocomplete
 ### 2. Install Backend Dependencies
 
 ```sh
-cd server
+cd api
 npm install
 ```
 
 ### 3. Install Frontend Dependencies
 
 ```sh
-cd ../client
+cd app
 npm install
 ```
 
