@@ -48,3 +48,33 @@ git clone https://github.com/rustzz-27/autocomplete.git
 cd autocomplete
 ```
 
+### 2. Install Backend Dependencies
+
+```sh
+cd server
+npm install
+```
+
+### 3. Install Frontend Dependencies
+
+```sh
+cd ../client
+npm install
+```
+
+## Running the Project
+
+### 1. Start the Backend Server
+
+```sh
+npm run dev
+```
+
+### 2. Start the Frontend Server
+
+```sh
+npm run start
+```
+
+
+
